@@ -13,9 +13,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @default(autoincrement()) @id
-  username String @unique @db.VarChar(30)
-  email String @unique
-  password String @db.VarChar(120)
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  email    String @unique
+  password String 
+  photo    String? 
+  room     Room[]
+  chat     Chat[]
+}
+
+model Room {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique //It means one room has only one slug or name and it can't be repeated
+  createdAt DateTime @default(now())
+  adminId   String
+  user      User     @relation(fields: [adminId], references: [id])
+  chat      Chat[]
+}
+
+model Chat {
+  id      Int    @id @default(autoincrement())
+  roomId  Int
+  message String
+  userId  String
+  room    Room   @relation(fields: [roomId], references: [id])
+  user    User   @relation(fields: [userId],references: [id])
 }

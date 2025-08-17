@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "public"."User" ALTER COLUMN "username" SET DATA TYPE TEXT,
+ALTER COLUMN "password" SET DATA TYPE TEXT,
+ALTER COLUMN "photo" SET DATA TYPE TEXT;
