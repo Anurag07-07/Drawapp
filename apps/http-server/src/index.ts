@@ -1,6 +1,9 @@
 import express from "express";
 import User from './routes/user.route.js'
 const app = express()
+import dotenv from "dotenv"
+dotenv.config({ path: "../../.env" }) 
+
 
 app.use(express.json())
 
