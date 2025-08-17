@@ -1,4 +1,4 @@
-import {SignupValidation,SigninValidation} from '@repo/common/types'
+import {SignupValidation,SigninValidation,CreateRoomValidation} from '@repo/common/types'
 import {prisma} from '@repo/database/db'
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
@@ -26,7 +26,6 @@ export const Signup = async(req:Request,res:Response)=>{
       }
     })
     
-    console.log(`2`);
     if (present) {
       return res.status(409).json({
         message:`User already present`
@@ -81,7 +80,6 @@ export const Signin = async(req:Request,res:Response)=>{
     }else{
       //If present validate the password and then create a token
       const matchPassword = await bcrypt.compare(password,present.password)
-      console.log(`4`);
       
       if (!matchPassword) {
         return res.status(401).json({
@@ -100,9 +98,44 @@ export const Signin = async(req:Request,res:Response)=>{
           token:token
         })
       }   
-  } catch (error) {
+  } catch (error:any) {
     return res.status(500).json({
       message:`internal Server Error`,
+      error:error
+    })
+  }
+}
+
+export const CreateRoom = async(req:Request,res:Response)=>{
+  const createRoomSchemaCheck = CreateRoomValidation.safeParse(req.body)
+
+  if (!createRoomSchemaCheck.success) {
+    return res.status(400).json({
+      error:createRoomSchemaCheck.error
+    })
+  }
+
+  const {roomname} = req.body
+  const userId = req.userId
+
+  if (!userId) {
+    throw new Error("User ID is required to create a room");
+  }
+
+
+  try {
+   const room = await prisma.room.create({
+    data:{
+      slug:roomname,
+      adminId:userId
+    }
+   })
+   return res.status(201).json({
+    message:`Room Created Successfully`
+   })
+  } catch (error:any) {
+    return res.status(500).json({
+      message:`Internal Server Error`,
       error:error
     })
   }
