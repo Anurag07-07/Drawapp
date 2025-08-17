@@ -36,7 +36,7 @@ export const Signup = async(req:Request,res:Response)=>{
 
       const hashedPassword = await bcrypt.hash(password,10)
       
-      await prisma.user.create({
+      const user = await prisma.user.create({
         data:{
           username,
           password:hashedPassword,
@@ -45,7 +45,8 @@ export const Signup = async(req:Request,res:Response)=>{
       })
 
       return res.status(200).json({
-        message:`User Created Successfully`
+        message:`User Created Successfully`,
+        userid:user.id
       })
     }
   } catch (error) {
@@ -131,7 +132,8 @@ export const CreateRoom = async(req:Request,res:Response)=>{
     }
    })
    return res.status(201).json({
-    message:`Room Created Successfully`
+    message:`Room Created Successfully`,
+    roomid:room.id
    })
   } catch (error:any) {
     return res.status(500).json({
