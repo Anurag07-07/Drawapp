@@ -5,7 +5,9 @@
     "./db": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "generate":"npx prisma generate",
+    "migrate:dev":"npx prisma migrate dev --init"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

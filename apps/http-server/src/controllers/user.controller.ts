@@ -18,6 +18,7 @@ export const Signup = async(req:Request,res:Response)=>{
   const {email,username,password} = req.body
   try {
     //Check if the User is present or not with the username
+    console.log(`1`);
     
     const present = await prisma.user.findFirst({
       where:{
@@ -25,6 +26,7 @@ export const Signup = async(req:Request,res:Response)=>{
       }
     })
     
+    console.log(`2`);
     if (present) {
       return res.status(409).json({
         message:`User already present`
