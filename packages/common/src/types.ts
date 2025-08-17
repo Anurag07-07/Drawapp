@@ -10,3 +10,7 @@ export const SigninValidation = z.object({
   username:z.string().min(5).max(25).regex(/[A-Z]/),
   password:z.string().min(5).max(25),
 })
+
+export const CreateRoomValidation = z.object({
+  roomname:z.string().min(5)
+})

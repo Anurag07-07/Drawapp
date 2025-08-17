@@ -17,10 +17,11 @@ wss.on('connection',(socket,request)=>{
   }
   //Get the url and form array
   const urlParams = new URLSearchParams(url.split('?')[1])
-  const tokenvalue = urlParams.get('token') as string
+  const tokenvalue = urlParams.get('token') || ""  as string
   const decoded = jwt.verify(tokenvalue,process.env.JWT_SECRET as string) as JwtPayload
-  if (!decoded) {
+  if (!decoded || !decoded.id) {
     wss.close()
+    return
   }
 
   socket.on('message',(e)=>{
