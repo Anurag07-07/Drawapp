@@ -4,7 +4,6 @@ import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-export const JWT_SECRET = 'excildraw0707'
 
 //Create a  Controller for Signup
 export const Signup = async(req:Request,res:Response)=>{
@@ -65,6 +64,8 @@ export const Signin = async(req:Request,res:Response)=>{
     })
   }
   const {username,password} = req.body 
+  console.log(`1`);
+  
   try {
     //Check if the user present or not
     const present = await prisma.user.findFirst({
@@ -72,26 +73,30 @@ export const Signin = async(req:Request,res:Response)=>{
         username
       }
     })
+    console.log(`2`);
     if (!present) {
       return res.status(404).json({
         message:`User not Present`
       })
+      console.log(`3`);
     }else{
       //If present validate the password and then create a token
-      console.log("Password: "+present.password);
       const matchPassword = await bcrypt.compare(password,present.password)
-
+      console.log(`4`);
+      
       if (!matchPassword) {
         return res.status(401).json({
           message:`Password Not match`
         })
       }
-
-        //Create a token
-        const token = jwt.sign({
-          id:present.id 
-        },JWT_SECRET as string)
-
+      console.log(`5`);
+      
+      //Create a token
+      const token = jwt.sign({
+        id:present.id.toString() 
+      },process.env.JWT_SECRET as string)
+      
+      console.log(`6`);
         //Token created send it to the user
         return res.status(201).json({
           message:"User Login Succesfully",
@@ -105,4 +110,3 @@ export const Signin = async(req:Request,res:Response)=>{
     })
   }
 }
-
