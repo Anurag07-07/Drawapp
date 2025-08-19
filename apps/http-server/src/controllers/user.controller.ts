@@ -18,7 +18,6 @@ export const Signup = async(req:Request,res:Response)=>{
   const {email,username,password} = req.body
   try {
     //Check if the User is present or not with the username
-    console.log(`1`);
     
     const present = await prisma.user.findFirst({
       where:{
@@ -32,7 +31,6 @@ export const Signup = async(req:Request,res:Response)=>{
       })
     }else{
       //Create the User
-      //Hash the password
 
       const hashedPassword = await bcrypt.hash(password,10)
       
@@ -44,7 +42,7 @@ export const Signup = async(req:Request,res:Response)=>{
         }
       })
 
-      return res.status(200).json({
+      return res.status(201).json({
         message:`User Created Successfully`,
         userid:user.id
       })
