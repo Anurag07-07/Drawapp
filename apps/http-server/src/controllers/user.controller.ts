@@ -30,8 +30,7 @@ export const Signup = async(req:Request,res:Response)=>{
         message:`User already present`
       })
     }else{
-      //Create the User
-
+      //Hash the Password
       const hashedPassword = await bcrypt.hash(password,10)
       
       const user = await prisma.user.create({
