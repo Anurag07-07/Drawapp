@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 
-//Create a  Controller for Signup
 export const Signup = async(req:Request,res:Response)=>{
   //Validation 
   const check = SignupValidation.safeParse(req.body)
