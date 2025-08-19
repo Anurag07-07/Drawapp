@@ -4,7 +4,7 @@ import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-
+//Create teh signup Route
 export const Signup = async(req:Request,res:Response)=>{
   //Validation 
   const check = SignupValidation.safeParse(req.body)
