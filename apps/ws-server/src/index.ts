@@ -7,8 +7,17 @@ interface JwtPayload{
   id:string
 }
 
-
 const wss = new WebSocketServer({port:8080})
+
+function checkUser(token:string):string | null {
+  const decoded = jwt.verify(token,process.env.JWT_SECRET as string) as JwtPayload
+
+  if (!decoded || !decoded.id) {
+    return null
+  }
+
+  return decoded.id
+}
 
 wss.on('connection',(socket,request)=>{
   const url = request.url
@@ -18,10 +27,9 @@ wss.on('connection',(socket,request)=>{
   //Get the url and form array
   const urlParams = new URLSearchParams(url.split('?')[1])
   const tokenvalue = urlParams.get('token') || ""  as string
-  const decoded = jwt.verify(tokenvalue,process.env.JWT_SECRET as string) as JwtPayload
-  if (!decoded || !decoded.id) {
+  const UserValidation = checkUser(tokenvalue)
+  if (!UserValidation) {
     wss.close()
-    return
   }
 
   socket.on('message',(e)=>{
