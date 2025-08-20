@@ -72,6 +72,17 @@ wss.on("connection", (socket, request) => {
             socket.send('Exit from the room')
           }
         }
+
+        //If user wants to send the message
+        if (parsedData.type === 'message') {
+          //First i have to find the user and i have to find the room where user exist
+          const room = parsedData.room
+          users.forEach((u)=>{
+            if (u.room.includes(room)) {
+              u.socket.send(parsedData.message)
+            }
+          })
+        }
       } catch (err) {
         console.error("Invalid JSON message:", err);
         socket.send("Invalid message format");
