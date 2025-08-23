@@ -119,6 +119,9 @@ importers:
         specifier: ^8.18.3
         version: 8.18.3
     devDependencies:
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config

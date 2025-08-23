@@ -2,7 +2,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config({ path: "../../.env" });
-
+import {prisma} from '@repo/database/db'
 interface JwtPayload {
   id: string;
 }
@@ -48,7 +48,7 @@ wss.on("connection", (socket, request) => {
       room: [],
     });
 
-    socket.on("message", (data) => {
+    socket.on("message", async(data) => {
       try {
         const parsedData = JSON.parse(data.toString() as unknown as string);
         //If the User Send type === 'join_room' we have to add the user in the room
@@ -74,23 +74,35 @@ wss.on("connection", (socket, request) => {
         }
 
         //If user wants to send the message
-        if (parsedData.type === 'message') {
+        if (parsedData.type === 'chat') {
           //First i have to find the user and i have to find the room where user exist
           const room = parsedData.room
+          const roomId = parsedData.roomId
+          //Find the user
+          const CurrentUser = users.find((x)=>x.socket === socket)
+          
           users.forEach((u)=>{
             if (u.room.includes(room)) {
-              u.socket.send(parsedData.message)
+              u.socket.send(JSON.stringify(parsedData.message))
             }
           })
+        
+          
+
+          await prisma.chat.create({
+            data:{
+              roomId:Number(roomId),
+              message:parsedData.message as unknown as string,
+              userId:CurrentUser?.userId as unknown as string,
+            }
+          })
+
         }
       } catch (err) {
         console.error("Invalid JSON message:", err);
         socket.send("Invalid message format");
       }
     });
-
-    console.log(users);
-
   } catch (err) {
     console.error("JWT Error:", err);
     socket.close(1008, "Unauthorized");

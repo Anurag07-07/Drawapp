@@ -129,7 +129,7 @@ export const CreateRoom = async(req:Request,res:Response)=>{
    })
    return res.status(201).json({
     message:`Room Created Successfully`,
-    roomid:room.id
+    roomId:room.id
    })
   } catch (error:any) {
     return res.status(500).json({
