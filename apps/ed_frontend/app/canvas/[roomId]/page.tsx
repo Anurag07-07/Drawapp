@@ -35,10 +35,17 @@ export default function Canvas() {
 
       canvas.addEventListener('mousemove',(e)=>{
         if (clicked) {
+          //Physics Basic Logic
           const width = e.clientX-startX
           const height = e.clientY-startY
 
+
           ctx.clearRect(0,0,canvas.width,canvas.height)
+          //Fill the Canva with black color
+          ctx.fillStyle = `rgba(0,0,0.1)`
+          ctx.fillRect(0,0,canvas.width,canvas.height)
+          //Create  a stroke of White color
+          ctx.strokeStyle = `rgba(255,255,255)`
           ctx.strokeRect(startX,startY,width,height)
         }
       })
