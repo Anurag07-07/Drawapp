@@ -1,59 +1,56 @@
 'use client'
+import { drawInit } from "@/app/draw"
 import { useEffect, useRef } from "react"
-
+import './page'
 export default function Canvas() {
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
+  
 
   useEffect(()=>{
 
-    if (canvasRef.current) {
-      const canvas = canvasRef.current
-      const ctx = canvas.getContext("2d")
-
-      if (!ctx) {
-        return 
-      }
-
-      ctx?.strokeRect(25,25,100,100) //x:25 y:25 is postion and width:100 height:100
-
-      let clicked = false
-      let startX = 0;
-      let startY = 0;
-      canvas.addEventListener('mousedown',(e)=>{
-        clicked = true
-        startX = e.clientX
-        startY = e.clientY
-      })
-
-      canvas.addEventListener('mouseup',(e)=>{
-        clicked = false
-        console.log(e.clientX);
-        console.log(e.clientY);
-      })
-
-      canvas.addEventListener('mousemove',(e)=>{
-        if (clicked) {
-          //Physics Basic Logic
-          const width = e.clientX-startX
-          const height = e.clientY-startY
-
-
-          ctx.clearRect(0,0,canvas.width,canvas.height)
-          //Fill the Canva with black color
-          ctx.fillStyle = `rgba(0,0,0.1)`
-          ctx.fillRect(0,0,canvas.width,canvas.height)
-          //Create  a stroke of White color
-          ctx.strokeStyle = `rgba(255,255,255)`
-          ctx.strokeRect(startX,startY,width,height)
-        }
-      })
+    if (!canvasRef.current) {
+      return 
     }
+
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+
+    const resize = ()=>{
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = window.innerWidth *dpr
+      canvas.height = window.innerHeight *dpr
+      
+      canvas.style.width = `${window.innerWidth}px`
+      canvas.style.height = `${window.innerHeight}px`
+
+      if (ctx) {
+        ctx.setTransform(1,0,0,1,0,0)
+        ctx.scale(dpr,dpr)
+        ctx.fillStyle = "black"
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+      }
+    }
+
+    resize()
+
+    window.addEventListener("resize",resize)
+
+
+    if (canvasRef.current) {
+      drawInit(canvasRef.current)
+    }
+
+
 
   },[canvasRef])
 
-  return <div>
-    <canvas ref={canvasRef} width={1000} height={1000} ></canvas>
-  </div>
+  useEffect(() => {
+  document.body.style.overflow = "hidden";
+  return () => {
+    document.body.style.overflow = "auto"; 
+  };
+}, []);
+  return <canvas ref={canvasRef} ></canvas>
 }
