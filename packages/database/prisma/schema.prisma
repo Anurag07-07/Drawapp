@@ -14,11 +14,11 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  username String @unique
-  email    String @unique
-  password String 
-  photo    String? 
+  id       String  @id @default(uuid())
+  username String  @unique
+  email    String  @unique
+  password String
+  photo    String?
   room     Room[]
   chat     Chat[]
 }
@@ -33,10 +33,29 @@ model Room {
 }
 
 model Chat {
-  id      Int    @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   roomId  Int
   message String
   userId  String
-  room    Room   @relation(fields: [roomId], references: [id])
-  user    User   @relation(fields: [userId],references: [id])
+  room    Room     @relation(fields: [roomId], references: [id])
+  user    User     @relation(fields: [userId], references: [id])
+  shape   Shapes[]
+}
+
+enum Types {
+  rect
+  circ
+}
+
+model Shapes {
+  id      Int   @id @default(autoincrement())
+  type    Types
+  x       Int?
+  y       Int?
+  width   Int?
+  height  Int?
+  radius  Int?
+  centerX Int?
+  centerY Int?
+  chat    Chat  @relation(fields: [id], references: [id])
 }

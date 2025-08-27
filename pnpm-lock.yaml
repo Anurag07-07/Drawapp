@@ -179,8 +179,8 @@ importers:
   packages/database:
     dependencies:
       '@prisma/client':
-        specifier: 6.14.0
-        version: 6.14.0(prisma@6.14.0(typescript@5.9.2))(typescript@5.9.2)
+        specifier: 6.15.0
+        version: 6.15.0(prisma@6.14.0(typescript@5.9.2))(typescript@5.9.2)
       '@types/dotenv':
         specifier: ^8.2.3
         version: 8.2.3
@@ -618,8 +618,8 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@prisma/client@6.14.0':
-    resolution: {integrity: sha512-8E/Nk3eL5g7RQIg/LUj1ICyDmhD053STjxrPxUtCRybs2s/2sOEcx9NpITuAOPn07HEpWBfhAVe1T/HYWXUPOw==}
+  '@prisma/client@6.15.0':
+    resolution: {integrity: sha512-wR2LXUbOH4cL/WToatI/Y2c7uzni76oNFND7+23ypLllBmIS8e3ZHhO+nud9iXSXKFt1SoM3fTZvHawg63emZw==}
     engines: {node: '>=18.18'}
     peerDependencies:
       prisma: '*'
@@ -3002,7 +3002,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@prisma/client@6.14.0(prisma@6.14.0(typescript@5.9.2))(typescript@5.9.2)':
+  '@prisma/client@6.15.0(prisma@6.14.0(typescript@5.9.2))(typescript@5.9.2)':
     optionalDependencies:
       prisma: 6.14.0(typescript@5.9.2)
       typescript: 5.9.2

@@ -6,8 +6,11 @@ import jwt from 'jsonwebtoken'
 
 //Create a signup Route 
 export const Signup = async(req:Request,res:Response)=>{
+  console.log(`1`);
+  
   //Validation 
   const check = SignupValidation.safeParse(req.body)
+  console.log(`1`);
 
   if (!check.success) {
     return res.status(400).json({
@@ -23,6 +26,9 @@ export const Signup = async(req:Request,res:Response)=>{
         username
       }
     })
+
+  console.log(`1`);
+
     
     if (present) {
       return res.status(409).json({
@@ -39,6 +45,8 @@ export const Signup = async(req:Request,res:Response)=>{
           email
         }
       })
+  console.log(`1`);
+
 
       return res.status(201).json({
         message:`User Created Successfully`,
