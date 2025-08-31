@@ -45,9 +45,6 @@ export const Signup = async(req:Request,res:Response)=>{
           email
         }
       })
-  console.log(`1`);
-
-
       return res.status(201).json({
         message:`User Created Successfully`,
         userid:user.id
@@ -96,6 +93,11 @@ export const Signin = async(req:Request,res:Response)=>{
       const token = jwt.sign({
         id:present.id.toString() 
       },process.env.JWT_SECRET as string)
+      
+        res.cookie('token',token,{
+          httpOnly:true,
+          sameSite:'strict'
+        })
       
         //Token created send it to the user
         return res.status(201).json({

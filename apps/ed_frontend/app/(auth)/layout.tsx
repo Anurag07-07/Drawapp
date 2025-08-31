@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
 
 export default function Layout({children}:{children:ReactNode}) {
-  return <div>
+  return <html>
+    <body>
     {children}
-  </div>
+    </body>
+  </html>
 }
