@@ -30,7 +30,7 @@ export default function Signin() {
       const res = await axios.post('http://localhost:3000/api/v1/signup',userdata,{
         headers:{
           "Content-Type":'application/json'
-        }
+        },withCredentials:true
       })
       const message = res.data
       Cookies.set('userId',message.userid)
@@ -43,9 +43,9 @@ export default function Signin() {
   }
 
 
-  return <>
-    <form onSubmit={submitHandler}>
-      <div>
+  return <div className=" bg-red-400 w-full h-screen ">
+    <form   onSubmit={submitHandler}>
+      <div className=" flex flex-col">
         <label htmlFor="">Email</label>
         <input type="email" name="email" placeholder="Enter the Email" value={userdata.email} onChange={changeHandler}  />
       </div>
@@ -62,5 +62,5 @@ export default function Signin() {
         <div>Already Signup ? <span><Link href={'/signin'}>Signin</Link></span></div>
       </div>
     </form>   
-  </>
+  </div>
 }
