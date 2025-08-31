@@ -43,21 +43,22 @@ export default function Signin() {
   }
 
 
-  return <div className=" bg-red-400 w-full h-screen ">
-    <form   onSubmit={submitHandler}>
+  return <div className=" bg-red-400 w-full h-screen flex justify-center items-center flex-col ">
+  <div>Signup</div>
+    <form   onSubmit={submitHandler} className=" bg-black p-6">
       <div className=" flex flex-col">
         <label htmlFor="">Email</label>
         <input type="email" name="email" placeholder="Enter the Email" value={userdata.email} onChange={changeHandler}  />
       </div>
-      <div>
+      <div className=" flex flex-col">
         <label htmlFor="">Username</label>
         <input type="text" name="username" placeholder="Enter the Username" value={userdata.username} onChange={changeHandler}   />
       </div>
-      <div>
+      <div className=" flex flex-col">
         <label htmlFor="">Password</label>
         <input type="password" name="password" placeholder="Enter the Password" value={userdata.password} onChange={changeHandler}  />
       </div>
-      <div>
+      <div className=" flex flex-col justify-center items-center">
         <button type="submit">Signup</button>
         <div>Already Signup ? <span><Link href={'/signin'}>Signin</Link></span></div>
       </div>
