@@ -100,7 +100,8 @@ export const Signin = async(req:Request,res:Response)=>{
         //Token created send it to the user
         return res.status(201).json({
           message:"User Login Succesfully",
-          token:token
+          token:token,
+          userId:present.id
         })
       }   
   } catch (error:any) {
