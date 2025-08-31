@@ -10,7 +10,7 @@ interface JwtPayload{
 const authMiddleware = async(req:Request,res:Response,next:NextFunction)=>{
   try {
     //Parse the token from the header
-    const value = req.headers.authorization
+    const value = req.headers.authorization || req.cookies('token')
     //Get the Token 
     const token = value?.split(" ")[1] as string
 
