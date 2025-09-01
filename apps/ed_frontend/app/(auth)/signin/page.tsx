@@ -3,6 +3,7 @@ import Cookies from "js-cookie"
 import axios from "axios"
 import Link from "next/link"
 import { ChangeEvent, FormEvent, useState } from "react"
+import { useRouter } from "next/navigation"
 
 interface IUser{
   password:string,
@@ -16,11 +17,14 @@ export default function Signin() {
     password:""
   })
 
+  const router = useRouter()
 
   function  changeHandler(e:ChangeEvent<HTMLInputElement>) {
     const {name,value} = e.target
     setUserData({...userdata,[name]:value})
   }
+
+  
 
 
   async function submitHandler(e:FormEvent<HTMLFormElement>) {
@@ -36,8 +40,10 @@ export default function Signin() {
         console.log(`Something Went Wrong`);
       }
 
-      const {token} = res.data
-      Cookies.set('token',token)
+      const {message,userId} = res.data
+      Cookies.set('userId',userId)
+      console.log(message);
+      router.push('http://localhost:3001/')
     } catch (error:unknown) {
       if (axios.isAxiosError(error)) {
         console.log(error.response?.data || error?.message);
@@ -46,7 +52,6 @@ export default function Signin() {
       }
     }
   }
-
 
   return <div className=" flex flex-col justify-center items-center w-full h-screen">
     <div className=" text-5xl "  >SIGNIN</div>
@@ -63,6 +68,6 @@ export default function Signin() {
         <button className=" bg-blue-600 text-white px-8 py-2 rounded-2xl lg:w-72"  type="submit">Signin</button>
         <div className=" font-extralight">Don&apos;t have Account ? <span className=" text-blue-700 lg:hover:text-blue-900"><Link href={'/signup'}>Signin</Link></span></div>
       </div>
-    </form>   
+    </form>
   </div>
 }

@@ -34,6 +34,7 @@ export default function Signin() {
       })
       const message = res.data
       Cookies.set('userId',message.userid)
+      localStorage.setItem('userId',message.userid)
     } catch (error:unknown) {
       console.log(`User Not Signup`);
       if (axios.isAxiosError(error)) {
