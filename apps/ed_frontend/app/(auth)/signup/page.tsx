@@ -44,7 +44,7 @@ export default function Signin() {
 
 
   return <div className="w-full h-screen flex justify-center items-center flex-col gap-y-5 ">
-  <div className=" text-5xl  font-semibold text-white ">Signup</div>
+  <div className=" text-5xl  font-semibold text-white ">SIGNUP</div>
     <form   onSubmit={submitHandler} className= "   bg-white text-black p-6 min-w-[70vw] lg:min-w-[30vw] min-h-[40vh] lg:min-h-[70vh]  flex flex-col justify-center items-center gap-y-4 lg:gap-y-7 rounded-4xl">
       <div className=" flex flex-col gap-y-3 lg:w-72 ">
         <label className=" text-xl lg:text-2xl lg:font-extralight font-semibold" htmlFor="">Email</label>
