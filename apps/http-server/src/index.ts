@@ -9,7 +9,12 @@ dotenv.config({ path: "../../.env" })
 
 app.use(cookieParser())
 
-app.use(cors())
+app.use(cors({
+  origin: ['http://localhost:3001', 'http://localhost:3002'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // allowed request headers
+  credentials: true,  // allow cookies / authorization headers
+}))
 
 app.use(express.json())
 
