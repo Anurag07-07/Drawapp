@@ -43,24 +43,24 @@ export default function Signin() {
   }
 
 
-  return <div className=" bg-red-400 w-full h-screen flex justify-center items-center flex-col ">
-  <div>Signup</div>
-    <form   onSubmit={submitHandler} className=" bg-black p-6">
-      <div className=" flex flex-col">
-        <label htmlFor="">Email</label>
-        <input type="email" name="email" placeholder="Enter the Email" value={userdata.email} onChange={changeHandler}  />
+  return <div className="w-full h-screen flex justify-center items-center flex-col gap-y-5 ">
+  <div className=" text-5xl  font-semibold text-white ">Signup</div>
+    <form   onSubmit={submitHandler} className= "   bg-white text-black p-6 min-w-[70vw] lg:min-w-[30vw] min-h-[40vh] lg:min-h-[70vh]  flex flex-col justify-center items-center gap-y-4 lg:gap-y-7 rounded-4xl">
+      <div className=" flex flex-col gap-y-3 lg:w-72 ">
+        <label className=" text-xl lg:text-2xl lg:font-extralight font-semibold" htmlFor="">Email</label>
+        <input className="  border-b-2" type="email" name="email" placeholder="Enter the Email" value={userdata.email} onChange={changeHandler}  />
       </div>
-      <div className=" flex flex-col">
-        <label htmlFor="">Username</label>
-        <input type="text" name="username" placeholder="Enter the Username" value={userdata.username} onChange={changeHandler}   />
+      <div className=" flex flex-col gap-y-3 lg:w-72 ">
+        <label className=" text-xl font-semibold lg:text-2xl lg:font-extralight"  htmlFor="">Username</label>
+        <input className="  border-b-2"  type="text" name="username" placeholder="Enter the Username" value={userdata.username} onChange={changeHandler}   />
       </div>
-      <div className=" flex flex-col">
-        <label htmlFor="">Password</label>
-        <input type="password" name="password" placeholder="Enter the Password" value={userdata.password} onChange={changeHandler}  />
+      <div className=" flex flex-col gap-y-3 lg:w-72 ">
+        <label className=" text-xl font-semibold lg:font-extralight lg:text-2xl"  htmlFor="">Password</label>
+        <input className="  border-b-2"  type="password" name="password" placeholder="Enter the Password" value={userdata.password} onChange={changeHandler}  />
       </div>
-      <div className=" flex flex-col justify-center items-center">
-        <button type="submit">Signup</button>
-        <div>Already Signup ? <span><Link href={'/signin'}>Signin</Link></span></div>
+      <div className=" flex flex-col justify-center items-center gap-y-3">
+        <button type="submit" className=" bg-blue-600 text-white px-8 py-2 rounded-2xl lg:w-72">Signup</button>
+        <div className=" font-extralight">Already Signup ? <span className=" text-blue-700 lg:hover:text-blue-900"><Link href={'/signin'}>Signin</Link></span></div>
       </div>
     </form>   
   </div>
