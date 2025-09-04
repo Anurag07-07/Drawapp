@@ -66,7 +66,7 @@ export default function Signin() {
       </div>
       <div className="flex flex-col justify-center items-center">
         <button className=" bg-blue-600 text-white px-8 py-2 rounded-2xl lg:w-72"  type="submit">Signin</button>
-        <div className=" font-extralight">Don&apos;t have Account ? <span className=" text-blue-700 lg:hover:text-blue-900"><Link href={'/signup'}>Signin</Link></span></div>
+        <div className=" font-extralight">Don&apos;t have Account ? <span className=" text-blue-700 lg:hover:text-blue-900"><Link href={'/signup'}>Signup</Link></span></div>
       </div>
     </form>
   </div>
