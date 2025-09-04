@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import logo from '../images/logo.svg'
+import logo from '../../public/logo.svg'
 import { IoMenuOutline } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 const Navbar = () => {
@@ -18,7 +18,7 @@ const Navbar = () => {
       <div>
         <Image width={250} src={logo} alt='logo'></Image>  
       </div>
-      <div onClick={ChangeToogle} className=' flex justify-center items-center border rounded-full px-2'>{<IoMenuOutline color='blue' size={30}></IoMenuOutline>}Menu</div>
+      <div onClick={ChangeToogle} className=' flex justify-center items-center border rounded-full px-2 '>{<IoMenuOutline color='blue' size={30}></IoMenuOutline>}Menu</div>
     </div>
     <div>
       {
