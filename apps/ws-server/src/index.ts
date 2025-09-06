@@ -6,7 +6,6 @@ import {prisma} from '@repo/database/db'
 interface JwtPayload {
   id: string;
 }
-
 interface User {
   socket: WebSocket;
   room: string[];
@@ -87,8 +86,6 @@ wss.on("connection", (socket, request) => {
             }
           })
         
-          
-
           await prisma.chat.create({
             data:{
               roomId:Number(roomId),
