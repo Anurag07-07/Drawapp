@@ -151,20 +151,8 @@ export const CreateRoom = async(req:Request,res:Response)=>{
 }
 
 export const StoreChat = async (req:Request,res:Response) => {
-  const {type,x,y,width,height} = req.body
-  const roomId = req.params.roomId as string
-  try {
-    
-    await prisma.shapes.create({
-      data:{
-        type:type,
-        x:x,
-        y:y,
-        width:width,
-        height:height,
-      }
-    })
-
+  
+  try{
     return res.status(201).json({
       message:`Data stored`
     })
