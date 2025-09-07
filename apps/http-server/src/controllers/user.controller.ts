@@ -165,8 +165,6 @@ export const StoreChat = async (req:Request,res:Response) => {
       }
     })
 
-    console.log(`2`);
-
     return res.status(201).json({
       message:`Data stored`
     })
