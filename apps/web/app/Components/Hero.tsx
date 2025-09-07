@@ -12,7 +12,7 @@ const Hero = () => {
         <div>co-create solutions and show it to others.</div>
       </div>
       <button className=' bg-blue-500 px-7 py-3 rounded-2xl font-extralight text-white'><Link href={`http://localhost:3002/signup`}>Just Start Drawing</Link></button>
-      <div className=' w-96 h-52 lg:flex lg:justify-center lg:items-center lg:h-[50vh] lg:w-[50vw]   rounded-2xl lg:object-cover lg:bg-red-600 lg:rounded-3xl' >
+      <div className=' w-96 h-52 lg:flex lg:justify-center lg:items-center lg:h-[50vh] lg:w-[50vw]   rounded-2xl lg:object-cover lg:rounded-3xl' >
       <video autoPlay className=' rounded-3xl' loop muted>
        <source type='video/mp4' src="/create_video.mp4" />
       </video>
