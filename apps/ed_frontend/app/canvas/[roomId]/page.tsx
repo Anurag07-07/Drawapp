@@ -37,12 +37,9 @@ export default function Canvas() {
 
     window.addEventListener("resize",resize)
 
-
     if (canvasRef.current) {
       drawInit(canvasRef.current)
     }
-
-
 
   },[canvasRef])
 

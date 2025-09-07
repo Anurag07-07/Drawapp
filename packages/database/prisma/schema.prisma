@@ -39,7 +39,6 @@ model Chat {
   userId  String
   room    Room     @relation(fields: [roomId], references: [id])
   user    User     @relation(fields: [userId], references: [id])
-  shape   Shapes[]
 }
 
 enum Types {
@@ -57,5 +56,4 @@ model Shapes {
   radius  Int?
   centerX Int?
   centerY Int?
-  chat    Chat  @relation(fields: [id], references: [id])
 }

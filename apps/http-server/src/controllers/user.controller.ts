@@ -150,6 +150,33 @@ export const CreateRoom = async(req:Request,res:Response)=>{
   }
 }
 
+export const StoreChat = async (req:Request,res:Response) => {
+  const {type,x,y,width,height} = req.body
+  const roomId = req.params.roomId as string
+  try {
+    
+    await prisma.shapes.create({
+      data:{
+        type:type,
+        x:x,
+        y:y,
+        width:width,
+        height:height,
+      }
+    })
+
+    console.log(`2`);
+
+    return res.status(201).json({
+      message:`Data stored`
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message:`Internal Server Error`
+    })
+  }
+}
+
 export const AllChat = async(req:Request,res:Response)=>{
   try {
     //Show last 50 message of  a particular room
