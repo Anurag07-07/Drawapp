@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { AllChat, CreateRoom, Signin, Signup, StoreChat } from "../controllers/user.controller.js";
+import { AllChat, CreateRoom, Signin, Signup, StoreChat} from "../controllers/user.controller.js";
 import authMiddleware from "../middlewares/auth.js";
 const router:Router = express.Router()
 

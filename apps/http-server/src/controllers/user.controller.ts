@@ -150,14 +150,13 @@ export const CreateRoom = async(req:Request,res:Response)=>{
   }
 }
 
-export const StoreChat = async (req:Request,res:Response) => {
-  
-  try{
-    return res.status(201).json({
-      message:`Data stored`
-    })
+export const StoreChat = async(req:Request,res:Response)=>{
+  const data = req.body
+  console.log(data);
+  try {
+    
   } catch (error) {
-    return res.status(500).json({
+    return res.status(5000).json({
       message:`Internal Server Error`
     })
   }
