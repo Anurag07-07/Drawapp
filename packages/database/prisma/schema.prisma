@@ -40,20 +40,3 @@ model Chat {
   room    Room     @relation(fields: [roomId], references: [id])
   user    User     @relation(fields: [userId], references: [id])
 }
-
-enum Types {
-  rect
-  circ
-}
-
-model Shapes {
-  id      Int   @id @default(autoincrement())
-  type    Types
-  x       Int?
-  y       Int?
-  width   Int?
-  height  Int?
-  radius  Int?
-  centerX Int?
-  centerY Int?
-}
