@@ -14,6 +14,7 @@ interface User {
 
 const wss = new WebSocketServer({ port: 8080 });
 
+//Array for state Management
 const users: User[] = [];
 
 wss.on("connection", (socket, request) => {
