@@ -77,7 +77,6 @@ wss.on("connection", (socket, request) => {
         if (parsedData.type === 'chat') {
           //First i have to find the user and i have to find the room where user exist
           const room = parsedData.room
-          const roomId = parsedData.roomId
           //Find the user
           const CurrentUser = users.find((x)=>x.socket === socket)
           
@@ -89,12 +88,11 @@ wss.on("connection", (socket, request) => {
         
           await prisma.chat.create({
             data:{
-              roomId:Number(roomId),
+              roomId:Number(room),
               message:parsedData.message as unknown as string,
               userId:CurrentUser?.userId as unknown as string,
             }
           })
-
         }
       } catch (err) {
         console.error("Invalid JSON message:", err);
