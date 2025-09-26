@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { AllChat, CreateRoom, Signin, Signup, StoreChat} from "../controllers/user.controller.js";
+import { AllChat, CreateRoom, Signin, Signup, SlugChat, StoreChat} from "../controllers/user.controller.js";
 import authMiddleware from "../middlewares/auth.js";
 const router:Router = express.Router()
 
@@ -8,5 +8,6 @@ router.post('/signin',Signin)
 router.post('/createroom',authMiddleware,CreateRoom)
 router.post('/storeshape/:roomId',authMiddleware,StoreChat)
 router.get('/chat/:roomId',AllChat)
+router.get('/room/:slug',SlugChat)
 
 export default router

@@ -187,3 +187,25 @@ export const AllChat = async(req:Request,res:Response)=>{
     })
   }
 }
+
+export const SlugChat = async(req:Request,res:Response)=>{
+  try {
+    //Show last 50 message of  a particular room
+    const slug = req.params.slug
+
+    //Search the message for that roomId
+    const messages = await prisma.room.findFirst({
+      where:{
+        slug
+      },
+    })
+ 
+    return res.status(201).json({
+      message:messages
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message:`Internal Server Error`
+    })
+  }
+}
