@@ -96,7 +96,7 @@ wss.on("connection", (socket, request) => {
         }
       } catch (err) {
         console.error("Invalid JSON message:", err);
-        socket.send("Invalid message format");
+        socket.send("Invalid message format",err as never);
       }
     });
   } catch (err) {

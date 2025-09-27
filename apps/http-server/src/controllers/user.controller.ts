@@ -6,11 +6,9 @@ import jwt from 'jsonwebtoken'
 
 //Create a signup Route 
 export const Signup = async(req:Request,res:Response)=>{
-  console.log(`1`);
   
   //Validation 
   const check = SignupValidation.safeParse(req.body)
-  console.log(`1`);
 
   if (!check.success) {
     return res.status(400).json({
@@ -26,8 +24,6 @@ export const Signup = async(req:Request,res:Response)=>{
         username
       }
     })
-
-  console.log(`1`);
 
     
     if (present) {
@@ -126,6 +122,7 @@ export const CreateRoom = async(req:Request,res:Response)=>{
   const {roomname} = req.body
   const userId = req.userId
 
+
   if (!userId) {
     throw new Error("User ID is required to create a room");
   }
@@ -181,6 +178,7 @@ export const AllChat = async(req:Request,res:Response)=>{
     return res.status(201).json({
       message:messages
     })
+    
   } catch (error) {
     return res.status(500).json({
       message:`Internal Server Error`
