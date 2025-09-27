@@ -23,7 +23,7 @@ wss.on("connection", (socket, request) => {
     socket.close(1008, "Missing URL");
     return;
   }
-
+  
   try {
     //Get the url and form array
     const urlParams = new URLSearchParams(url.split("?")[1]);
